@@ -12,6 +12,7 @@ echo 'set $node2 = (List*)0' >> _tmp.gdb
 
 exec < $1
 read var
+
 echo 'create_list $head' $var >> _tmp.gdb
 
 exec < $1
@@ -41,6 +42,6 @@ do
 	echo 'set logging off' >> _tmp.gdb
 done
 
-gdb -q -x _tmp.gdb bin-swap >> /dev/null
+gdb -q -nh -x _tmp.gdb bin-swap >> /dev/null
 
 rm _tmp.gdb

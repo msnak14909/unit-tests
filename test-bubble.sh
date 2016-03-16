@@ -47,6 +47,6 @@ done
 echo 'q' >> _tmp.gdb
 echo 'y' >> _tmp.gdb
 
-gdb -q -x _tmp.gdb bin-bubble >>/dev/null
+gdb -q -nh -x _tmp.gdb bin-bubble >> /dev/null
 
 rm _tmp.gdb

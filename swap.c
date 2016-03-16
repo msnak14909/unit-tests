@@ -1,88 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define NODE_SWAP(a,b,c) { (a)=(b);(b)=(c);(c)=(a); }
 
 typedef struct List_node {
     int value;
     struct List_node *next;
-} List_node;
-
-typedef struct List_node List;
+} List;
 
 List *swap(List *head, List *node_1, List *node_2)
 {
-    if (!head &&
-        (node_1 == NULL) && (node_2 == NULL) &&
-        (node_1 == node_2))
+    // limitation
+    if (!head ||
+            (node_1 == NULL) || (node_2 == NULL) ||
+            (node_1 == node_2))
         return head;
 
-    int num_pre_node_1_and_node_2 = 0;
+    int pre_num = 0;
 
-    List *_head = head;
-    List *pre_node_1,*pre_node_2,*tmp_node;
+    List *pre_node_1 = 0,*pre_node_2 = 0,*tmp_node;
 
-    while (head && head->next) {
-        if (head->next == node_1) {
-            pre_node_1 = head;
-            num_pre_node_1_and_node_2 = num_pre_node_1_and_node_2 + 1;
+    for(List *cur = head; cur; cur=cur->next) {
+        if (cur->next == node_1) {
+            pre_node_1 = cur;
+            pre_num++;
+        } else if (cur->next == node_2) {
+            pre_node_2 = cur;
+            pre_num++;
         }
+    }
 
-        if (head->next == node_2) {
-            pre_node_2 = head;
-            num_pre_node_1_and_node_2 = num_pre_node_1_and_node_2 + 1;
+    if (pre_num != 2) {
+        if (head == node_1) {
+            pre_node_1 = NULL;
+            pre_num++;
+        } else if (head == node_2) {
+            pre_node_2 = NULL;
+            pre_num++;
         }
-        head = head->next;
+        if (pre_num!=2) return head;
     }
-
-    head = _head;
-    if (head == node_1) {
-        pre_node_1 = NULL;
-        num_pre_node_1_and_node_2 = num_pre_node_1_and_node_2 + 1;
-    }
-
-    if (head == node_2) {
-        pre_node_2 = NULL;
-        num_pre_node_1_and_node_2 = num_pre_node_1_and_node_2 + 1;
-    }
-
-    if (num_pre_node_1_and_node_2 != 2)
-        return head;
 
     if (pre_node_1 == NULL) {
         pre_node_2->next = node_1;
-        tmp_node = node_1->next;
-        node_1->next = node_2->next;
-        node_2->next = tmp_node;
+        NODE_SWAP(tmp_node, node_2->next, node_1->next);
         return node_2;
-    }
-
-    if (pre_node_2 == NULL) {
+    } else if(pre_node_2 == NULL) {
         pre_node_1->next = node_2;
-        tmp_node = node_2->next;
-        node_2->next = node_1->next;
-        node_1->next = tmp_node;
+        NODE_SWAP(tmp_node, node_2->next, node_1->next);
         return node_1;
-    }
-
-    if (node_2->next == node_1) {
-        pre_node_2->next = node_1;
-        tmp_node = node_1->next;
-        node_1->next = node_2;
-        node_2->next = tmp_node;
-        return head;
-    }
-
-    if (node_1->next == node_2) {
+    } else {
         pre_node_1->next = node_2;
-        tmp_node = node_2->next;
-        node_2->next = node_1;
-        node_1->next = tmp_node;
+        pre_node_2->next = node_1;
+        NODE_SWAP(tmp_node, node_2->next, node_1->next);
         return head;
     }
-
-    pre_node_1->next = node_2;
-    tmp_node = node_2->next;
-    node_2->next = node_1->next;
-    pre_node_2->next = node_1;
-    node_1->next = tmp_node;
-    return head;
 }

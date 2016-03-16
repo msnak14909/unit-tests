@@ -21,5 +21,8 @@ check: $(EXEC)
 	bash test-swap.sh data-swap.in result-swap
 	bash test-bubble.sh data-bubble.in result-bubble
 
+astyle:
+	astyle --style=kr --indent=spaces=4 --indent-switches --suffix=none *.[ch]
+
 clean:
-	$(RM) $(EXEC) $(OBJS)
+	$(RM) $(EXEC) $(OBJS) result-bubble result-swap
