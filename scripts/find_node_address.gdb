@@ -10,7 +10,11 @@ while($i < $arg1)
 
 end
 
-p $arg2 = $arg0
+if($arg1 == 0)
+        p $arg2 = (List*)0
+else
+        p $arg2 = $arg0
+end
 
 p $arg0 = $_head
 

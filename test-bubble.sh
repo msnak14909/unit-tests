@@ -8,6 +8,7 @@ echo 'source scripts/free_list.gdb' >> _tmp.gdb
 
 echo 'set $head = (List**)malloc(sizeof(List*))' >> _tmp.gdb
 
+echo 'set $cmp = compare_gt' >> _tmp.gdb
 echo 'set logging file '$2>>_tmp.gdb
 
 echo ' '>>$2
@@ -35,7 +36,7 @@ do
 	echo 'p "old_list"' >> _tmp.gdb
 	echo 'printf_list (*($head))' >> _tmp.gdb
 	echo 'set logging off' >> _tmp.gdb
-	echo 'p bubble_sort($head)' >> _tmp.gdb
+	echo 'p bubble_sort($head,$cmp)' >> _tmp.gdb
 	echo 'set logging on' >> _tmp.gdb
 	echo 'p "new_list"' >> _tmp.gdb
 	echo 'printf_list (*($head))' >> _tmp.gdb
