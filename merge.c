@@ -27,11 +27,11 @@ List *recursive_sort(List *left, cmp_t cmp)
 
     while(left && right) {
         if(cmp(left->value ,right->value)) {
-            next_node = left;
-            left = left->next;
-        } else {
             next_node = right;
             right = right->next;
+        } else {
+            next_node = left;
+            left = left->next;
         }
         if(head) link->next = next_node;
         else head = next_node;

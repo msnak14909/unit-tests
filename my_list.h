@@ -7,14 +7,14 @@ typedef struct List_node {
 } List;
 
 typedef int (*cmp_t)(int a, int b);
-int compare_gt(int a, int b)
+int compare_asc(int a, int b)
 {
     return a > b;
 }
 
-int compare_lt(int a, int b)
+int compare_desc(int a, int b)
 {
-    return a < b;
+    return b > a;
 }
 
 #endif

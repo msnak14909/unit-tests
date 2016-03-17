@@ -1,18 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define NODE_SWAP(a,b,c) { (a)=(b);(b)=(c);(c)=(a); }
+#include "my_list.h"
 
-typedef struct List_node {
-    int value;
-    struct List_node *next;
-} List;
+#define NODE_SWAP(a,b,c) { (a)=(b);(b)=(c);(c)=(a); }
 
 List *swap(List *head, List *node_1, List *node_2)
 {
     // limitation
     if (!head ||
-            (node_1 == NULL) || (node_2 == NULL) ||
-            (node_1 == node_2))
+        (node_1 == NULL) || (node_2 == NULL) ||
+        (node_1 == node_2))
         return head;
 
     List *pre_node_1 = 0,*pre_node_2 = 0,*tmp_node;
@@ -37,11 +34,11 @@ List *swap(List *head, List *node_1, List *node_2)
     }
 
     if (node_head) {
-        if(node_head == 1) {
+        if(node_head & 1) {
             pre_node_1->next = node_2;
             NODE_SWAP(tmp_node, node_2->next, node_1->next);
             return node_1;
-        } else if (node_head == 2) {
+        } else {
             pre_node_2->next = node_1;
             NODE_SWAP(tmp_node, node_2->next, node_1->next);
             return node_2;

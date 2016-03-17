@@ -7,8 +7,7 @@ echo 'source scripts/print_list.gdb' >> _tmp.gdb
 echo 'source scripts/free_list.gdb' >> _tmp.gdb
 
 echo 'set $head = (List**)malloc(sizeof(List*))' >> _tmp.gdb
-
-echo 'set $cmp = compare_gt' >> _tmp.gdb
+echo 'set $cmp = compare_asc' >> _tmp.gdb
 echo 'set logging file '$2>>_tmp.gdb
 
 echo ' '>>$2

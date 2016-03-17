@@ -1,18 +1,6 @@
 /* FIXME : introduce elegant ways to reuse */
 #include "swap.c"
 
-typedef int (*cmp_t)(int a, int b);
-
-int compare_gt(int a, int b)
-{
-    return a > b;
-}
-
-int compare_lt(int a, int b)
-{
-    return a < b;
-}
-
 void bubble_sort(List **head, cmp_t cmp)
 {
     if (head == NULL || (*head == NULL))
