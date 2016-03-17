@@ -35,8 +35,9 @@ void bubble_sort(List **head, cmp_t cmp)
             if(cmp(sub_head->value,sub_head->next->value)) {
                 sub_head = swap(sub_head,sub_head,sub_head->next);
                 *pre_sub_head = sub_head;
+
             }
-            pre_sub_head = &((*pre_sub_head)->next);
+            pre_sub_head = &(sub_head->next);
             sub_head = sub_head->next;
         }
     }

@@ -1,4 +1,4 @@
-EXEC = bin-swap bin-bubble
+EXEC = bin-swap bin-bubble bin-merge
 .PHONY: all
 all: $(EXEC)
 
@@ -9,6 +9,7 @@ LDFLAGS =
 OBJS := \
 	swap.o \
 	bubble.o \
+	merge.o \
 	stub.o
 
 %.o: %.c
@@ -20,9 +21,10 @@ bin-%: %.o stub.o
 check: $(EXEC)
 	bash test-swap.sh data-swap.in result-swap
 	bash test-bubble.sh data-bubble.in result-bubble
+	bash test-merge.sh data-merge.in result-merge
 
 astyle:
 	astyle --style=kr --indent=spaces=4 --indent-switches --suffix=none *.[ch]
 
 clean:
-	$(RM) $(EXEC) $(OBJS) result-bubble result-swap
+	$(RM) $(EXEC) $(OBJS) result-bubble result-swap result-merge
