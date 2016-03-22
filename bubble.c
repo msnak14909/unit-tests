@@ -7,7 +7,6 @@ void bubble_sort(List **head, cmp_t cmp)
         return;
 
     int num_list = 0;
-    int sub_i;
     List **pre_sub_head = head;
     List *sub_head;
 
@@ -19,14 +18,14 @@ void bubble_sort(List **head, cmp_t cmp)
     for (; num_list > 0; num_list--) {
         sub_head = *head;
         pre_sub_head = head;
-        for (sub_i = 1; sub_i < num_list; sub_i++) {
+        for (int sub_i = 1; sub_i < num_list; sub_i++) {
             if(cmp(sub_head->value,sub_head->next->value)) {
                 sub_head = swap(sub_head,sub_head,sub_head->next);
                 *pre_sub_head = sub_head;
-
             }
             pre_sub_head = &(sub_head->next);
             sub_head = sub_head->next;
+
         }
     }
     return;

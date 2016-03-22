@@ -8,8 +8,8 @@ List *swap(List *head, List *node_1, List *node_2)
 {
     // limitation
     if (!head ||
-            (node_1 == NULL) || (node_2 == NULL) ||
-            (node_1 == node_2))
+        (node_1 == NULL) || (node_2 == NULL) ||
+        (node_1 == node_2))
         return head;
 
     List *pre_node_1 = 0,*pre_node_2 = 0,*tmp_node;

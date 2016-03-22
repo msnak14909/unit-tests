@@ -1,5 +1,6 @@
 EXEC = bin-swap bin-bubble bin-merge
 .PHONY: all
+.PRECIOUS: %.o
 all: $(EXEC)
 
 CC ?= gcc
